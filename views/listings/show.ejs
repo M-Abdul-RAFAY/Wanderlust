@@ -1,0 +1,167 @@
+<% layout("/layouts/boilarplate.ejs") %>
+<body>
+  <div class="container py-5">
+    <!-- Listing Details Section -->
+    <div class="p-5 text-center bg-light shadow rounded-3">
+      <div
+        class="mx-auto mb-4"
+        style="
+          width: 100%;
+          height: 300px;
+          background-image: url('<%= result.image.url %>');
+          background-size: cover;
+          background-position: center;
+          border-radius: 1rem;
+        "
+      ></div>
+      <h1 class="text-primary mb-4">Listing Details</h1>
+
+      <ul class="list-group list-group-flush fs-5 text-start">
+        <li class="list-group-item">
+          <strong>Listed By:</strong> <%= result.owner.username %>
+        </li>
+        <li class="list-group-item">
+          <strong>Title:</strong> <%= result.title %>
+        </li>
+        <li class="list-group-item">
+          <strong>Description:</strong> <%= result.description %>
+        </li>
+        <li class="list-group-item">
+          <strong>Price:</strong> $<%= result.price %>
+        </li>
+        <li class="list-group-item">
+          <strong>Location:</strong> <%= result.location %>
+        </li>
+        <li class="list-group-item">
+          <strong>Country:</strong> <%= result.country %>
+        </li>
+      </ul>
+      <%if(currentUser){%> <% if (currentUser._id.equals(result.owner._id) ||
+      currentUser._id.equals("674b07cf6b11346cbe5cb527")) { %>
+      <!-- Call to Action Buttons -->
+      <div
+        class="mt-4 d-flex flex-column flex-md-row justify-content-center gap-3"
+      >
+        <a
+          href="/listing/<%= result.id %>/edit"
+          class="btn btn-gradient-primary btn-lg rounded-pill px-4"
+        >
+          <i class="bi bi-pencil-square me-2"></i> Edit Details
+        </a>
+        <form
+          action="/listing/delete/<%= result.id %>?_method=DELETE"
+          method="post"
+        >
+          <button
+            type="submit"
+            class="btn btn-gradient-danger btn-lg rounded-pill px-4"
+          >
+            <i class="bi bi-trash me-2"></i> Delete Listing
+          </button>
+        </form>
+      </div>
+      <% } %>
+    </div>
+
+    <!-- Comment Form -->
+    <div class="mt-5">
+      <h2 class="text-secondary mb-4">Leave a Comment</h2>
+      <form
+        action="/listings/<%= result.id %>/review"
+        method="post"
+        novalidate
+        class="needs-validation"
+      >
+        <fieldset class="starability-basic">
+          <legend>First rating:</legend>
+          <input
+            type="radio"
+            id="no-rate"
+            class="input-no-rate"
+            name="review[rating]"
+            value="0"
+            checked
+            aria-label="No rating."
+          />
+          <input
+            type="radio"
+            id="first-rate1"
+            name="review[rating]"
+            value="1"
+          />
+          <label for="first-rate1" title="Terrible">1 star</label>
+          <input
+            type="radio"
+            id="first-rate2"
+            name="review[rating]"
+            value="2"
+          />
+          <label for="first-rate2" title="Not good">2 stars</label>
+          <input
+            type="radio"
+            id="first-rate3"
+            name="review[rating]"
+            value="3"
+          />
+          <label for="first-rate3" title="Average">3 stars</label>
+          <input
+            type="radio"
+            id="first-rate4"
+            name="review[rating]"
+            value="4"
+          />
+          <label for="first-rate4" title="Very good">4 stars</label>
+          <input
+            type="radio"
+            id="first-rate5"
+            name="review[rating]"
+            value="5"
+          />
+          <label for="first-rate5" title="Amazing">5 stars</label>
+        </fieldset>
+        <div class="mb-3">
+          <label class="form-label" for="comment">Comment:</label>
+          <textarea
+            class="form-control"
+            name="review[comment]"
+            id="comment"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-success btn-lg">Submit</button>
+      </form>
+    </div>
+    <% } %>
+    <!-- Reviews Section -->
+    <hr class="my-5" />
+    <h2 class="text-secondary">Reviews</h2>
+    <% for (let eachItem of result.review) { %>
+    <div class="card mb-3">
+      <div class="card-body text-start">
+        <!-- Added text-start class here -->
+        <h5 class="card-title text-primary">
+          Name: <%= eachItem.author.username %>
+        </h5>
+        <p class="card-text">
+          <strong>Comment:</strong> <%= eachItem.comment %>
+        </p>
+        <p
+          class="starability-result card-text"
+          data-rating="<%= eachItem.rating %>"
+        ></p>
+        <% if (currentUser) { %> <% if (
+        currentUser._id.equals(eachItem.author._id) ||
+        currentUser._id.equals("674b07cf6b11346cbe5cb527") ) { %>
+        <form
+          action="/listings/<%= result.id %>/review/<%= eachItem.id %>?_method=delete"
+          method="post"
+        >
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <% } %> <% } %>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</body>

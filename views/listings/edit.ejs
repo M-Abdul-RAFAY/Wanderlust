@@ -1,0 +1,91 @@
+<% layout("/layouts/boilarplate.ejs")%>
+<body>
+  <h1 class="create-listing-heading">Edit whatever you want</h1>
+  <div class="container">
+    <div class="col">
+      <form
+        action="/listing/<%=result.id%>/edit?_method=patch"
+        method="post"
+        class="needs-validation"
+        novalidate=""
+      >
+        <div class="row g-3">
+          <div class="col-12">
+            <label for="title" class="form-label">Title</label>
+            <input
+              name="listing[title]"
+              id="title"
+              type="text"
+              class="form-control"
+              value="<%= result.title %>"
+              required=""
+            />
+            <div class="invalid-feedback">Title is required.</div>
+          </div>
+
+          <div class="col-12">
+            <label for="description" class="form-label">Description</label>
+            <input
+              name="listing[description]"
+              id="description"
+              type="text"
+              class="form-control"
+              value="<%= result.description %>"
+              required=""
+            />
+            <div class="invalid-feedback">Description is required.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="price" class="form-label">Price</label>
+            <input
+              name="listing[price]"
+              id="price"
+              type="number"
+              class="form-control"
+              value="<%= result.price %>"
+              required=""
+            />
+            <div class="invalid-feedback">Price is required.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="location" class="form-label">Location</label>
+            <input
+              name="listing[location]"
+              id="location"
+              type="text"
+              class="form-control"
+              value="<%= result.location %>"
+              required=""
+            />
+            <div class="invalid-feedback">Location is required.</div>
+          </div>
+
+          <div class="col-12">
+            <label for="country" class="form-label">Country</label>
+            <select
+              name="listing[country]"
+              id="country"
+              class="form-select"
+              required=""
+            >
+              <option>United States</option>
+              <option>Canada</option>
+              <option>United Kingdom</option>
+              <option>Australia</option>
+              <!-- Add all other country options here -->
+            </select>
+            <div class="invalid-feedback">Please select a valid country.</div>
+          </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <button class="w-100 btn btn-primary btn-lg" type="submit">
+          Submit Changes
+        </button>
+      </form>
+    </div>
+  </div>
+</body>

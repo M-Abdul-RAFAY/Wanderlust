@@ -1,0 +1,44 @@
+.fa-dragon {
+  color: #fe424d;
+  font-size: 2rem;
+}
+/* cards */
+.card {
+  text-align: center;
+  border: none;
+  margin: 2rem;
+}
+.card-img-top {
+  border-radius: 1rem;
+  width: 100%;
+  object-fit: cover;
+  height: 18rem;
+}
+.center {
+  justify-content: center;
+}
+.create-listing-heading {
+  text-align: center;
+  margin: 1rem;
+}
+.display {
+  display: inline;
+}
+.btn-gradient-primary {
+  background: linear-gradient(90deg, #4e54c8, #8f94fb);
+  color: white;
+  border: none;
+}
+.btn-gradient-primary:hover {
+  background: linear-gradient(90deg, #8f94fb, #4e54c8);
+  color: white;
+}
+.btn-gradient-danger {
+  background: linear-gradient(90deg, #ff416c, #ff4b2b);
+  color: white;
+  border: none;
+}
+.btn-gradient-danger:hover {
+  background: linear-gradient(90deg, #ff4b2b, #ff416c);
+  color: white;
+}

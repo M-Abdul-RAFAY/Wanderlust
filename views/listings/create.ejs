@@ -1,0 +1,101 @@
+<% layout("/layouts/boilarplate.ejs")%>
+<body>
+  <div class="container">
+    <div class="col-lg-12">
+      <h4 class="create-listing-heading">Create Listing</h4>
+      <form
+        action="/listing/create"
+        method="post"
+        class="needs-validation"
+        novalidate=""
+        enctype="multipart/form-data"
+      >
+        <div class="row g-3">
+          <div class="col-12">
+            <label for="title" class="form-label">Title</label>
+            <input
+              name="listing[title]"
+              id="title"
+              type="text"
+              class="form-control"
+              required=""
+            />
+            <div class="invalid-feedback">Title is required.</div>
+          </div>
+
+          <div class="col-12">
+            <label for="description" class="form-label">Description</label>
+            <input
+              name="listing[description]"
+              id="description"
+              type="text"
+              class="form-control"
+              required=""
+            />
+            <div class="invalid-feedback">Description is required.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="price" class="form-label">Price</label>
+            <input
+              name="listing[price]"
+              id="price"
+              type="number"
+              class="form-control"
+              required=""
+            />
+            <div class="invalid-feedback">Price is required.</div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="location" class="form-label">Location</label>
+            <input
+              name="listing[location]"
+              id="location"
+              type="text"
+              class="form-control"
+              required=""
+            />
+            <div class="invalid-feedback">Location is required.</div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="url" class="form-label">Upload Listing Image</label>
+              <input
+                name="listing[image]"
+                id="url"
+                type="file"
+                class="form-control"
+              />
+              <div class="invalid-feedback">Please Enter the correct url.</div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="country" class="form-label">Country</label>
+            <select
+              name="listing[country]"
+              id="country"
+              class="form-select"
+              required=""
+            >
+              <option>United States</option>
+              <option>Canada</option>
+              <option>United Kingdom</option>
+              <option>Australia</option>
+              <!-- Add all other country options here -->
+            </select>
+            <div class="invalid-feedback">Please select a valid country.</div>
+          </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <button class="w-100 btn btn-primary btn-lg" type="submit">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</body>
