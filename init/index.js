@@ -4,9 +4,7 @@ const Listing = require("../model/listing");
 const { object } = require("joi");
 
 async function main() {
-  await mongoose.connect(
-    "mongodb+srv://muhammadabdulrafay1:P08JfclddpJTRsg8@wandarlust.ihz1r.mongodb.net/?retryWrites=true&w=majority&appName=WandarLust"
-  );
+  await mongoose.connect(process.env.MONGODB);
 }
 
 main()
